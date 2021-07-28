@@ -14,6 +14,19 @@ use ZnLib\Web\Symfony4\MicroApp\BaseWebController;
 class ModuleHelper
 {
 
+    public static function generateModuleConfig(): array
+    {
+        $config = [];
+        $modules = ModuleHelper::getModules();
+        foreach ($modules as $module) {
+            $className = 'App\\' . $module . '\\Module';
+            $config[] = new $className;
+        }
+        $config[] = new \App\Dashboard\Module();
+
+        return $config;
+    }
+
     public static function getCurrentModule(): string
     {
         $currentUri = Url::getBaseUrl();
