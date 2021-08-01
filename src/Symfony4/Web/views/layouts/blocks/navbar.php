@@ -2,6 +2,9 @@
 
 use ZnSymfony\Sandbox\Symfony4\Web\Helpers\ModuleHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\Inflector;
+use ZnBundle\Language\Symfony4\Widgets\Language\LanguageWidget;
+use ZnLib\Web\View\View;
+use ZnLib\Web\Widgets\UserNavbarMenu\UserNavbarMenuWidget;
 
 $modules = ModuleHelper::getModules();
 $currentModule = ModuleHelper::getCurrentModule();
@@ -27,5 +30,19 @@ $currentModule = ModuleHelper::getCurrentModule();
             <input class="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Поиск">
             <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Поиск</button>
         </form>
+        <ul class="navbar-nav d-flex flex-row">
+            <?= UserNavbarMenuWidget::widget([
+                'userMenuHtml' => '
+                        <a class="dropdown-item" href="/person-settings">
+                            <i class="fas fa-user-cog"></i>
+                            Персональные данные
+                        </a>
+                        <a class="dropdown-item" href="/update-password">
+                            <i class="fas fa-user-cog"></i>
+                            Изменить пароль
+                        </a>
+                    ',
+            ]) ?>
+        </ul>
     </div>
 </nav>

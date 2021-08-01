@@ -23,7 +23,7 @@ class Bundle extends BaseBundle
     public function container(): array
     {
         return [
-//            __DIR__ . '/../../../zncore/base/src/Libs/App/container.php',
+            __DIR__ . '/../../../zncore/base/src/Libs/App/container.php',
             __DIR__ . '/Domain/config/container.php',
         ];
     }
