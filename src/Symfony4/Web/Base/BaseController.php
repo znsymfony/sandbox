@@ -64,6 +64,35 @@ abstract class BaseController extends BaseWebController
         $this->alertInfo($value ? 'True' : 'False');
     }
 
+    protected function printTable(array $value, array $headers = [])
+    {
+        $trList = [];
+        foreach ($value as $row) {
+            $rowHtml = '';
+            foreach ($row as $cell) {
+                $rowHtml .= '<td>'.$cell.'</td>';
+            }
+            $trList[] = '<tr>'.$rowHtml.'</tr>';
+        }
+
+        $headerRowHtml = '';
+        foreach ($headers as $cell) {
+            $headerRowHtml .= '<th>'.$cell.'</th>';
+        }
+        if($headerRowHtml) {
+            $headerHtml = '<tr>'.$headerRowHtml.'</tr>';
+        } else {
+            $headerHtml = '';
+        }
+
+        $html = '
+<table class="table table-striped table-bordered">
+    '.$headerHtml.'
+    '.implode(PHP_EOL, $trList).'
+</table>';
+        $this->print($html);
+    }
+
     protected function printHeader(string $message, int $level = 3)
     {
         $message = htmlspecialchars($message);
