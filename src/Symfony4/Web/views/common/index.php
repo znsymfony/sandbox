@@ -14,8 +14,10 @@ use ZnLib\Web\View\View;
 <?= $content ?>
 
 <?php
-foreach ($dumps as $dump) {
-    dump($dump);
+if(isset($dumps)) {
+    foreach ($dumps as $dump) {
+        dump($dump);
+    }
 }
 ?>
 
