@@ -27,7 +27,7 @@ $moduleId = ModuleHelper::getCurrentModule();
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title><?= $title ?? '' ?></title>
     <?= StyleWidget::widget(['view' => $this]) ?>
-    <link rel="stylesheet" href="/node_modules/code-prettify/loader/prettify.css" />
+<!--    <link rel="stylesheet" href="/node_modules/code-prettify/loader/prettify.css" />-->
     <!--<link rel="stylesheet" href="/node_modules/code-prettify/loader/skins/desert.css" />-->
 </head>
 <body>
