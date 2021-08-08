@@ -18,6 +18,8 @@ $moduleId = ModuleHelper::getCurrentModule();
 
 (new AppAsset())->register($this);
 
+$menu = ModuleHelper::map('App\\' . Inflector::camelize($moduleId));
+
 ?>
 
 <!doctype html>
@@ -36,16 +38,18 @@ $moduleId = ModuleHelper::getCurrentModule();
 
 <div class="container mt-3">
     <div class="row">
-        <div class="col-9">
+        <div class="col-<?= !empty($menu) ? '9' : '12' ?>">
             <?= $this->renderFile(__DIR__ . '/blocks/breadcrumbs.php') ?>
             <?= $content ?>
         </div>
-        <div class="col-3">
-            <?= $this->renderFile(__DIR__ . '/blocks/menu.php', [
-                'moduleId' => $moduleId,
-                'menu' => ModuleHelper::map('App\\' . Inflector::camelize($moduleId)),
-            ]) ?>
-        </div>
+        <?php if(!empty($menu)): ?>
+            <div class="col-3">
+                <?= $this->renderFile(__DIR__ . '/blocks/menu.php', [
+                    'moduleId' => $moduleId,
+                    'menu' => $menu,
+                ]) ?>
+            </div>
+        <?php endif ?>
     </div>
 </div>
 
