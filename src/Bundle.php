@@ -13,7 +13,7 @@ class Bundle extends BaseBundle
             new \ZnLib\Db\Bundle(['container', 'console']),
             new \ZnCore\Base\Libs\I18Next\Bundle(['all']),
             new \ZnBundle\User\NewBundle(['all']),
-            new \ZnSandbox\Sandbox\Casbin\Bundle(['all']),
+            new \ZnUser\Rbac\Bundle(['all']),
             new \ZnBundle\Log\Bundle(['all']),
             new \ZnBundle\Notify\Bundle(['all']),
         ];
