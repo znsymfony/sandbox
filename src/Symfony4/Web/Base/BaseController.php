@@ -5,6 +5,7 @@ namespace ZnSymfony\Sandbox\Symfony4\Web\Base;
 use Symfony\Component\HttpFoundation\HeaderUtils;
 use Symfony\Component\HttpFoundation\Response;
 use ZnCore\Base\Encoders\XmlEncoder;
+use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
 use ZnCore\Domain\Helpers\EntityHelper;
 use ZnLib\Web\Symfony4\MicroApp\BaseWebController;
@@ -66,6 +67,21 @@ abstract class BaseController extends BaseWebController
 
     protected function printTable(array $value, array $headers = [])
     {
+        if($headers && !ArrayHelper::isIndexed($headers)) {
+            $newValue = [];
+            //dd($headers);
+            foreach ($value as $row) {
+                $newRow = [];
+                foreach ($headers as $headerName => $headerValue) {
+                    $newRow[] = $row[$headerName];
+                }
+                $newValue[] = $newRow;
+            }
+            $value = $newValue;
+            $headers = array_values($headers);
+            //dd($value);
+        }
+
         $trList = [];
         foreach ($value as $row) {
             $rowHtml = '';
