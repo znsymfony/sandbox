@@ -2,12 +2,10 @@
 
 namespace ZnSymfony\Sandbox\Symfony4\Web\Base;
 
-use Symfony\Component\HttpFoundation\HeaderUtils;
 use Symfony\Component\HttpFoundation\Response;
 use ZnCore\Base\Encoders\XmlEncoder;
-use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
-use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
 use ZnCore\Domain\Helpers\EntityHelper;
+use ZnLib\Web\Helpers\TableHelper;
 use ZnLib\Web\Symfony4\MicroApp\BaseWebController;
 use ZnLib\Web\Widgets\TabContent\TabContentWidget;
 
@@ -67,45 +65,7 @@ abstract class BaseController extends BaseWebController
 
     protected function printTable(array $value, array $headers = [])
     {
-        if($headers && !ArrayHelper::isIndexed($headers)) {
-            $newValue = [];
-            //dd($headers);
-            foreach ($value as $row) {
-                $newRow = [];
-                foreach ($headers as $headerName => $headerValue) {
-                    $newRow[] = $row[$headerName];
-                }
-                $newValue[] = $newRow;
-            }
-            $value = $newValue;
-            $headers = array_values($headers);
-            //dd($value);
-        }
-
-        $trList = [];
-        foreach ($value as $row) {
-            $rowHtml = '';
-            foreach ($row as $cell) {
-                $rowHtml .= '<td>'.$cell.'</td>';
-            }
-            $trList[] = '<tr>'.$rowHtml.'</tr>';
-        }
-
-        $headerRowHtml = '';
-        foreach ($headers as $cell) {
-            $headerRowHtml .= '<th>'.$cell.'</th>';
-        }
-        if($headerRowHtml) {
-            $headerHtml = '<tr>'.$headerRowHtml.'</tr>';
-        } else {
-            $headerHtml = '';
-        }
-
-        $html = '
-<table class="table table-striped table-bordered">
-    '.$headerHtml.'
-    '.implode(PHP_EOL, $trList).'
-</table>';
+        $html = TableHelper::render($value, $headers, 'table table-bordered table-striped table-condensed table-sm');
         $this->print($html);
     }
 
