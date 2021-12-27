@@ -5,9 +5,9 @@ namespace ZnSymfony\Sandbox\Symfony4\Web\Base;
 use Symfony\Component\HttpFoundation\Response;
 use ZnCore\Base\Encoders\XmlEncoder;
 use ZnCore\Domain\Helpers\EntityHelper;
-use ZnLib\Web\Helpers\TableHelper;
 use ZnLib\Web\Symfony4\MicroApp\BaseWebController;
 use ZnLib\Web\Widgets\TabContent\TabContentWidget;
+use ZnLib\Web\Widgets\Table\TableWidget;
 
 abstract class BaseController extends BaseWebController
 {
@@ -65,7 +65,11 @@ abstract class BaseController extends BaseWebController
 
     protected function printTable(array $value, array $headers = [])
     {
-        $html = TableHelper::render($value, $headers, 'table table-bordered table-striped table-condensed table-sm');
+        $html = TableWidget::widget([
+            'tableClass' => 'table table-bordered table-striped table-condensed table-sm',
+            'body' => $value,
+            'header' => $headers,
+        ]);
         $this->print($html);
     }
 
