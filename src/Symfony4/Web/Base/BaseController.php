@@ -4,6 +4,7 @@ namespace ZnSymfony\Sandbox\Symfony4\Web\Base;
 
 use Symfony\Component\HttpFoundation\Response;
 use ZnCore\Base\Encoders\XmlEncoder;
+use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 use ZnCore\Domain\Helpers\EntityHelper;
 use ZnLib\Web\Symfony4\MicroApp\BaseWebController;
 use ZnLib\Web\Widgets\TabContent\TabContentWidget;
@@ -65,6 +66,13 @@ abstract class BaseController extends BaseWebController
 
     protected function printTable(array $value, array $headers = [])
     {
+        if(!ArrayHelper::isIndexed($value)) {
+            $rr = [];
+            foreach ($value as $name => $value) {
+                $rr[] = [$name, $value];
+            }
+            $value = $rr;
+        }
         $html = TableWidget::widget([
             'tableClass' => 'table table-bordered table-striped table-condensed table-sm',
             'body' => $value,
