@@ -81,6 +81,22 @@ abstract class BaseController extends BaseWebController
         $this->print($html);
     }
 
+    protected function printSubmit()
+    {
+        $this->print('<p>
+<form name="form" method="POST">
+<div class="form-group">
+    <button type="submit" id="form_save" class="btn btn-primary" name="form[save]">Отправить</button></div>
+
+</form>
+</p>');
+    }
+
+    protected function printForm()
+    {
+        $this->print();
+    }
+
     protected function printHeader(string $message, int $level = 3)
     {
         $message = htmlspecialchars($message);
@@ -102,6 +118,15 @@ abstract class BaseController extends BaseWebController
             $data = $xmlEncoder->decode($data);
         }
         $this->printCode($xmlEncoder->encode($data));
+    }
+
+    protected function startBuffer() {
+        ob_start();
+        ob_implicit_flush(false);
+    }
+
+    protected function endBuffer() {
+        ob_get_clean();
     }
 
     protected function encodeJson($data)
