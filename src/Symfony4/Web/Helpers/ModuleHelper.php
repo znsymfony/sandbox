@@ -5,6 +5,7 @@ namespace ZnSymfony\Sandbox\Symfony4\Web\Helpers;
 use ReflectionClass;
 use ReflectionMethod;
 use ZnCore\Base\Helpers\ComposerHelper;
+use ZnCore\Base\Helpers\FindFileHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\Inflector;
@@ -40,7 +41,7 @@ class ModuleHelper
         ];
         $result = [];
         $baseModuleDir = __DIR__ . '/../../../../../../../src';
-        $modules = FileHelper::scanDir($baseModuleDir);
+        $modules = FindFileHelper::scanDir($baseModuleDir);
         ArrayHelper::removeByValue('Common', $modules);
         foreach ($modules as $moduleName) {
             $moduleFile = $baseModuleDir . '/' . $moduleName . '/Module.php';
@@ -94,6 +95,6 @@ class ModuleHelper
     {
         $moduleDir = ComposerHelper::getPsr4Path($namespace);
         $controllerDir = $moduleDir . '/Controllers';
-        return FileHelper::scanDir($controllerDir);
+        return FindFileHelper::scanDir($controllerDir);
     }
 }
