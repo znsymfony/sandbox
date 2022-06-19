@@ -4,7 +4,7 @@ namespace ZnSymfony\Sandbox\Symfony4\Web\Helpers;
 
 use ReflectionClass;
 use ReflectionMethod;
-use ZnCore\Base\Helpers\ComposerHelper;
+use ZnCore\Base\Libs\Composer\Helpers\ComposerHelper;
 use ZnCore\Base\Libs\FileSystem\Helpers\FindFileHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
 use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
