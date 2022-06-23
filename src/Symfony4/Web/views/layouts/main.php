@@ -7,7 +7,7 @@
  */
 
 use ZnSymfony\Sandbox\Symfony4\Web\Helpers\ModuleHelper;
-use ZnCore\Base\Legacy\Yii\Helpers\Inflector;
+use ZnCore\Base\Libs\Text\Helpers\Inflector;
 use ZnLib\Web\Symfony4\MicroApp\Assets\AppAsset;
 use ZnLib\Web\Symfony4\MicroApp\Widgets\Layout\ScriptWidget;
 use ZnLib\Web\Symfony4\MicroApp\Widgets\Layout\StyleWidget;

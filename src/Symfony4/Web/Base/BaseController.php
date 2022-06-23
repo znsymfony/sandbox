@@ -3,8 +3,8 @@
 namespace ZnSymfony\Sandbox\Symfony4\Web\Base;
 
 use Symfony\Component\HttpFoundation\Response;
-use ZnCore\Base\Encoders\XmlEncoder;
-use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
+use ZnCore\Base\Libs\Format\Encoders\XmlEncoder;
+use ZnCore\Base\Libs\Arr\Helpers\ArrayHelper;
 use ZnCore\Domain\Entity\Helpers\EntityHelper;
 use ZnLib\Web\Symfony4\MicroApp\BaseWebController;
 use ZnLib\Web\Widgets\TabContent\TabContentWidget;

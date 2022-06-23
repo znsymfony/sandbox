@@ -2,8 +2,8 @@
 
 namespace ZnSymfony\Sandbox\Symfony4\Web\Helpers;
 
-use ZnCore\Base\Legacy\Yii\Helpers\Inflector;
-use ZnCore\Base\Legacy\Yii\Helpers\Url;
+use ZnCore\Base\Libs\Text\Helpers\Inflector;
+use ZnLib\Web\Helpers\Url;
 
 class UrlHelper
 {

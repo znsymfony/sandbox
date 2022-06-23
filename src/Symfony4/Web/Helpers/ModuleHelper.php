@@ -4,12 +4,11 @@ namespace ZnSymfony\Sandbox\Symfony4\Web\Helpers;
 
 use ReflectionClass;
 use ReflectionMethod;
+use ZnCore\Base\Libs\Text\Helpers\Inflector;
+use ZnLib\Web\Helpers\Url;
+use ZnCore\Base\Libs\Arr\Helpers\ArrayHelper;
 use ZnCore\Base\Libs\Composer\Helpers\ComposerHelper;
 use ZnCore\Base\Libs\FileSystem\Helpers\FindFileHelper;
-use ZnCore\Base\Legacy\Yii\Helpers\ArrayHelper;
-use ZnCore\Base\Legacy\Yii\Helpers\FileHelper;
-use ZnCore\Base\Legacy\Yii\Helpers\Inflector;
-use ZnCore\Base\Legacy\Yii\Helpers\Url;
 use ZnLib\Web\Symfony4\MicroApp\BaseWebController;
 
 class ModuleHelper
@@ -45,7 +44,7 @@ class ModuleHelper
         ArrayHelper::removeByValue('Common', $modules);
         foreach ($modules as $moduleName) {
             $moduleFile = $baseModuleDir . '/' . $moduleName . '/Module.php';
-            if(is_file($moduleFile) && !in_array($moduleName, $exclude)) {
+            if (is_file($moduleFile) && !in_array($moduleName, $exclude)) {
                 $result[] = $moduleName;
             }
         }
@@ -67,7 +66,7 @@ class ModuleHelper
             $controllerName = str_replace('.php', '', $controllerFile);
             $methods = self::getControllerActions($controllerName, $namespace);
             foreach ($methods as $methodName) {
-                if($methodName[0] != '_') {
+                if ($methodName[0] != '_') {
                     $controllerId = str_replace('Controller', '', $controllerName);
                     $map[$controllerId][] = $methodName;
                 }
@@ -84,7 +83,7 @@ class ModuleHelper
         $reflectionMethods = $reflection->getMethods(ReflectionMethod::IS_PUBLIC);
         $methods = [];
         foreach ($reflectionMethods as $reflectionMethod) {
-            if($reflectionMethod->isPublic() && $reflectionMethod->class != BaseWebController::class) {
+            if ($reflectionMethod->isPublic() && $reflectionMethod->class != BaseWebController::class) {
                 $methods[] = $reflectionMethod->name;
             }
         }
