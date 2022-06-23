@@ -6,7 +6,7 @@
  */
 
 use ZnSymfony\Sandbox\Symfony4\Web\Helpers\UrlHelper;
-use ZnCore\Base\Libs\Text\Helpers\Inflector;
+use ZnCore\Base\Text\Helpers\Inflector;
 use ZnLib\Web\Helpers\Url;
 
 $currentUri = Url::getBaseUrl();
